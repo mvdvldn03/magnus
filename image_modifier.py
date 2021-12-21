@@ -12,7 +12,7 @@ def send_image():
 
     rand_time = f"7:{random.randint(10,20)}:{random.randint(10,59)}"
 
-    img = Image.open("/Users/maxvandervelden/Documents/template.png")
+    img = Image.open("~/Documents/template.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("Helvetica.ttc", 72)
 
@@ -21,14 +21,14 @@ def send_image():
 
     w2, h2 = draw.textsize(f"0{rand_time}",font=font)
     draw.text(((720-w2)/2, 805),f"0{rand_time}",(74, 73, 73),font=font)
-    img.save("/Users/maxvandervelden/Documents/magnus_app.png")
+    img.save("~/Documents/magnus_app.png")
 
     scpt = f'''
-            set filePath to POSIX file "/Users/maxvandervelden/Documents/magnus_app.png"
+            set filePath to POSIX file "~/Documents/magnus_app.png"
             
             tell application "Messages"
                 set targetService to 1st account whose service type = iMessage
-                set targetBuddy to participant "+1 (404) 849-0944" of targetService
+                set targetBuddy to participant "PHONE_NUMBER" of targetService
                 send file filePath to targetBuddy
             end tell
             '''
